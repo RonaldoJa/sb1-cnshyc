@@ -1,0 +1,32 @@
+<div class="word-search-container">
+  <div class="grid-container">
+    <div class="grid">
+      <div class="row" *ngFor="let row of grid">
+        <div class="cell" 
+             *ngFor="let cell of row"
+             [class.selected]="cell.selected"
+             (mousedown)="onMouseDown(cell)"
+             (mouseover)="onMouseOver(cell)"
+             (mouseup)="onMouseUp()">
+          {{ cell.letter }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="questions-container">
+    <h2>Preguntas de Programación</h2>
+    <div class="questions-list">
+      <div *ngFor="let question of questions" 
+           class="question-item"
+           [class.found]="question.found">
+        <p>{{ question.question }}</p>
+        <button (click)="showHint(question)" 
+                [disabled]="question.found">
+          Ver pista
+        </button>
+      </div>
+    </div>
+    <div class="message" *ngIf="message">{{ message }}</div>
+  </div>
+</div>
